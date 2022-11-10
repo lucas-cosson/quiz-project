@@ -1,0 +1,17 @@
+services:
+  database:
+    image: "mariadb:latest"
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_DATABASE: quizz-project
+      MARIADB_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      - PMA_ARBITRARY=1
