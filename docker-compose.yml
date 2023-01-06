@@ -5,8 +5,8 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MARIADB_DATABASE: quizz-project
-      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: "quizz_project"
+      MARIADB_ROOT_PASSWORD: "root"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -14,4 +14,7 @@ services:
     ports:
       - "8000:80"
     environment:
-      - PMA_ARBITRARY=1
+      PMA_HOST: database
+      PMA_ARBITRARY: 1
+    depends_on:
+      - database
