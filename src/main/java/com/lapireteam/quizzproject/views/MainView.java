@@ -1,6 +1,6 @@
 package com.lapireteam.quizzproject.views;
 
-import com.lapireteam.quizzproject.components.Layout;
+import com.lapireteam.quizzproject.components.*;
 import com.lapireteam.quizzproject.security.SecurityService;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
@@ -18,10 +18,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @PageTitle("Home | Quiz")
 public class MainView extends VerticalLayout {
     public MainView(SecurityService securityService) {
-        Layout layout = new Layout(securityService);
+        Layout layout = new Layout();
         add(layout);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         add(new H1("Welcome to Quizzle!"));
+
+        Pubs pubs = new Pubs();
+        add(pubs);
     }
 }
