@@ -1,5 +1,6 @@
 package com.lapireteam.quizzproject.views;
 
+
 import com.lapireteam.quizzproject.components.*;
 import com.lapireteam.quizzproject.security.SecurityService;
 import com.vaadin.flow.component.Text;
@@ -11,7 +12,6 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 
 @AnonymousAllowed
 @Route
