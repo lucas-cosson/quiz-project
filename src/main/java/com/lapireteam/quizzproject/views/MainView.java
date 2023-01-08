@@ -1,5 +1,7 @@
 package com.lapireteam.quizzproject.views;
 
+
+import com.lapireteam.quizzproject.components.*;
 import com.lapireteam.quizzproject.security.SecurityService;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
@@ -13,22 +15,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 @AnonymousAllowed
 @Route
-@PageTitle("Home | SuperQuiz")
+@PageTitle("Home | Quiz")
 public class MainView extends VerticalLayout {
     public MainView(SecurityService securityService) {
-        addClassName("main-view");
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        Layout layout = new Layout();
+        add(layout);
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        add(new H1("Welcome to Quizzle!"));
 
-        add(new H1("Bienvenue " + currentPrincipalName + " !"));
-        add(new Text("Vous êtes connecté en tant que " + securityService.getAuthenticatedUser().getEmail() + "."));
-
-        Button logoutButton = new Button("Se déconnecter", event -> {
-            securityService.logout();
-        });
-
-        add(logoutButton);
+        Pubs pubs = new Pubs();
+        add(pubs);
     }
 }
