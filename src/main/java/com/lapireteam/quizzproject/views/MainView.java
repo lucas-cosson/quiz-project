@@ -23,7 +23,7 @@ public class MainView extends VerticalLayout {
         String currentPrincipalName = authentication.getName();
 
         add(new H1("Bienvenue " + currentPrincipalName + " !"));
-        add(new Text("Vous êtes connecté en tant que " + securityService.getAuthenticatedUser() + "."));
+        add(new Text("Vous êtes connecté en tant que " + securityService.getAuthenticatedUser().getEmail() + "."));
 
         Button logoutButton = new Button("Se déconnecter", event -> {
             securityService.logout();

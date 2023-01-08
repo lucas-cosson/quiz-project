@@ -1,6 +1,6 @@
 package com.lapireteam.quizzproject.form;
 
-import com.lapireteam.quizzproject.entity.Role;
+import com.lapireteam.quizzproject.enumeration.Role;
 import com.lapireteam.quizzproject.entity.User;
 import com.lapireteam.quizzproject.repository.UserRepository;
 import com.vaadin.flow.component.UI;
