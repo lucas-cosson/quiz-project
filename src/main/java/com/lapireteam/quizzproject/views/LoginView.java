@@ -2,18 +2,19 @@ package com.lapireteam.quizzproject.views;
 
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
+import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.*;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+
+import javax.annotation.security.RolesAllowed;
 
 @AnonymousAllowed
 @Route("login")
-@PageTitle("Login | Quizz")
+@PageTitle("Se connecter | SuperQuiz")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
-    private final LoginForm login = new LoginForm();
+    LoginI18n i18n = LoginI18n.createDefault();
+    private final LoginForm loginForm = new LoginForm();
 
     public LoginView() {
         addClassName("login-view");
@@ -21,19 +22,41 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
-        login.setAction("login");
+        this.setuptI18N();
 
-        add(new H1("Quizz Project"), login);
+        loginForm.setI18n(i18n);
+        loginForm.setAction("login");
+
+        add(new H1("Quizz Project"), loginForm, new RouterLink("S'inscrire", RegistrationView.class));
     }
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        // inform the user about an authentication error
         if (beforeEnterEvent.getLocation()
                 .getQueryParameters()
                 .getParameters()
                 .containsKey("error")) {
-            login.setError(true);
+            loginForm.setError(true);
         }
+    }
+
+    /**
+     * Set up the internationalization for the login form
+     */
+    private void setuptI18N() {
+        LoginI18n.Form i18nForm = i18n.getForm();
+
+        i18nForm.setTitle("");
+        i18nForm.setUsername("Nom d'utilisateur");
+        i18nForm.setPassword("Mot de passe");
+        i18nForm.setSubmit("Se connecter");
+        i18nForm.setForgotPassword("Mot de passe oublié ?");
+        i18n.setForm(i18nForm);
+
+        LoginI18n.ErrorMessage i18nErrorMessage = i18n.getErrorMessage();
+        i18nErrorMessage.setTitle("Nom d'utilisateur ou mot de passe incorrect");
+        i18nErrorMessage.setMessage(
+                "Veuillez vérifier votre nom d'utilisateur et votre mot de passe et réessayer.");
+        i18n.setErrorMessage(i18nErrorMessage);
     }
 }
