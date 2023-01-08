@@ -1,5 +1,6 @@
-package com.lapireteam.quizzproject.entity;
+package com.lapireteam.quizzproject.security;
 
+import com.lapireteam.quizzproject.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,6 +17,7 @@ public class SecurityUser implements UserDetails {
     public String getUsername() {
         return user.getUsername();
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
