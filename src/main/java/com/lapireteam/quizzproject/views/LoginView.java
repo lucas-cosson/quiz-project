@@ -7,8 +7,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.*;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
-import javax.annotation.security.RolesAllowed;
-
 @AnonymousAllowed
 @Route("login")
 @PageTitle("Se connecter | SuperQuiz")
@@ -26,8 +24,9 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
         loginForm.setI18n(i18n);
         loginForm.setAction("login");
+        loginForm.setForgotPasswordButtonVisible(false);
 
-        add(new H1("Quizz Project"), loginForm, new RouterLink("S'inscrire", RegistrationView.class));
+        add(new H1("SuperQuiz"), loginForm, new RouterLink("S'inscrire", RegistrationView.class));
     }
 
     @Override

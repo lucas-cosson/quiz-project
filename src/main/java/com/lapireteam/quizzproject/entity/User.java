@@ -1,15 +1,17 @@
 package com.lapireteam.quizzproject.entity;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import com.lapireteam.quizzproject.enumeration.Role;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import org.springframework.util.DigestUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
@@ -29,6 +31,10 @@ public class User extends AbstractPersistable<Long> {
     private String description;
     @Column(nullable = false)
     private Role role;
+    @OneToMany(mappedBy = "author")
+    private Collection<Quiz> quizzes = new ArrayList<>();
+    @OneToMany(mappedBy = "author")
+    private Collection<Comment> comments = new ArrayList<>();
 
     public User() {
     }
@@ -87,5 +93,21 @@ public class User extends AbstractPersistable<Long> {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Collection<Quiz> getQuizzes() {
+        return quizzes;
+    }
+
+    public void setQuizzes(Collection<Quiz> quizzes) {
+        this.quizzes = quizzes;
+    }
+
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
     }
 }
