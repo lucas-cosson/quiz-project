@@ -47,8 +47,15 @@ public class RegistrationFormBinder {
         registrationForm.getSubmitButton().addClickListener(event -> {
             try {
                 User userBean = new User();
-
                 binder.writeBean(userBean);
+
+                System.out.println("id: " + userBean.getId() +
+                        " firstname: " + userBean.getFirstName() +
+                        " lastname: " + userBean.getLastName() +
+                        " username: " + userBean.getUsername() +
+                        " password: " + userBean.getPassword() +
+                        " email: " + userBean.getEmail() +
+                        " role: " + userBean.getRole());
 
                 userBean.setRole(Role.USER);
                 userBean.setPassword(new BCryptPasswordEncoder().encode(userBean.getPassword()));
@@ -100,5 +107,4 @@ public class RegistrationFormBinder {
 
         UI.getCurrent().navigate("");
     }
-
 }

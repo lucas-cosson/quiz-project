@@ -13,6 +13,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import java.util.stream.Stream;
 
 public class RegistrationForm extends FormLayout {
+    private final TextField firstName;
+    private final TextField lastName;
+    private final TextField username;
+    private final EmailField email;
     private final PasswordField password;
     private final PasswordField passwordConfirm;
 
@@ -23,11 +27,11 @@ public class RegistrationForm extends FormLayout {
     public RegistrationForm() {
         H3 title = new H3("Inscription");
 
-        TextField firstName = new TextField("Prénom");
-        TextField lastName = new TextField("Nom");
-        TextField username = new TextField("Nom d'utilisateur");
+        firstName = new TextField("Prénom");
+        lastName = new TextField("Nom");
+        username = new TextField("Nom d'utilisateur");
 
-        EmailField email = new EmailField("Email");
+        email = new EmailField("Email");
 
         password = new PasswordField("Mot de passe");
         passwordConfirm = new PasswordField("Confirmation du mot de passe");

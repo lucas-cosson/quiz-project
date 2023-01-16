@@ -34,9 +34,4 @@ public class SecurityConfig extends VaadinWebSecurity {
 
         setLoginView(http, LoginView.class);
     }
-
-    @Override
-    protected void configure(WebSecurity web) throws Exception {
-        super.configure(web);
-    }
 }
