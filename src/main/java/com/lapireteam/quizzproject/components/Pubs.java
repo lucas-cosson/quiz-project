@@ -10,10 +10,10 @@ public class Pubs extends VerticalLayout {
     public Pubs() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if(!auth.isAuthenticated() || auth.getName().equals("anonymousUser")){
+        if (!auth.isAuthenticated() || auth.getName().equals("anonymousUser")) {
             StreamResource imageResource = new StreamResource("pubFooter.PNG",
                     () -> getClass().getResourceAsStream("/images/pubFooter.PNG"));
-            Image image = new Image(imageResource,"pub footer");
+            Image image = new Image(imageResource, "pub footer");
             add(image);
         }
     }

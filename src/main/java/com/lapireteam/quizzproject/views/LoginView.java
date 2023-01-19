@@ -1,5 +1,6 @@
 package com.lapireteam.quizzproject.views;
 
+import com.lapireteam.quizzproject.components.Layout;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginI18n;
@@ -9,16 +10,14 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 @AnonymousAllowed
 @Route("login")
-@PageTitle("Se connecter | SuperQuiz")
+@PageTitle("Se connecter | Quizzle")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     LoginI18n i18n = LoginI18n.createDefault();
     private final LoginForm loginForm = new LoginForm();
 
     public LoginView() {
         addClassName("login-view");
-        setSizeFull();
         setAlignItems(Alignment.CENTER);
-        setJustifyContentMode(JustifyContentMode.CENTER);
 
         this.setuptI18N();
 
@@ -26,7 +25,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         loginForm.setAction("login");
         loginForm.setForgotPasswordButtonVisible(false);
 
-        add(new H1("SuperQuiz"), loginForm, new RouterLink("S'inscrire", RegistrationView.class));
+        add(new Layout(), new H1("Quizzle"), loginForm, new RouterLink("S'inscrire", RegistrationView.class));
     }
 
     @Override
