@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/style/main.css" th:href="@{/style/main.css}">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+  <title>VU Quiz Result</title>
+</head>
+<body>
+<div class="content">
+  <header>
+    <nav>
+      <a class="nav-link float-left" th:href="@{/}" href="home.html">Home</a>
+      <a class="nav-link float-left" th:href="@{/quiz/result}" href="result.html">Result</a>
+      <a class="nav-link float-left" th:href="@{/quiz/create}" href="create.html">Create</a>
+      <a class="nav-link float-left" th:href="@{/quiz/categories}" href="categories.html">Categories</a>
+
+      <a class="nav-fancy-link float-right" th:href="@{/login}" href="login.html"
+         sec:authorize="!isAuthenticated()">Login</a>
+      <form th:action="@{/logout}" method="post" class="float-right" sec:authorize="isAuthenticated()">
+        <input type="submit" value="Logout" class="nav-fancy-link">
+      </form>
+      <a class="nav-fancy-link float-right" sec:authorize="isAuthenticated()"
+         sec:authentication="name">Username</a>
+    </nav>
+  </header>
+
+  <div class="content flexbox flexbox-center">
+
+    <div class="form-container">
+
+      <h1 class="heading text-center">Create</h1>
+
+        <form th:action="@{/quiz/create}" method="post" th:object="${cre}">
+
+          <label class="input-field-container">
+            Sujet
+            <input type="text" th:field="*{title}"
+                   class="input-field full-width">
+            <span class="validation-error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Question Error</span>
+          </label>
+
+          <!--
+          <label class="question-option-container top-margin" th:each="subject : ${subs}">
+            <span class="question-option" th:text="${subject.title}">
+            </span>
+            <input type="radio" th:value="${subject.title}" class="default-radio">
+            <span class="custom-radio"></span>
+          </label>
+          -->
+        <label class="input-field-container">
+          Question
+          <input type="text" th:field="*{questionText}"
+                 class="input-field full-width">
+          <span class="validation-error" th:if="${#fields.hasErrors('questionText')}" th:errors="*{questionText}">Question Error</span>
+        </label>
+
+        <label class="input-field-container">
+          Réponse 1
+          <input type="text" th:field="*{optionsText[0]}"
+                 class="input-field full-width">
+          <span class="validation-error" th:if="${#fields.hasErrors('optionsText[0]')}" th:errors="*{optionsText[0]}">QuestionOption Error</span>
+        </label>
+
+        <label class="input-field-container">
+          Réponse 2
+          <input type="text" th:field="*{optionsText[1]}"
+                 class="input-field full-width">
+          <span class="validation-error" th:if="${#fields.hasErrors('optionsText[1]')}" th:errors="*{optionsText[1]}">QuestionOption Error</span>
+        </label>
+
+        <label class="input-field-container">
+          Réponse 3
+          <input type="text" th:field="*{optionsText[2]}"
+                 class="input-field full-width">
+          <span class="validation-error" th:if="${#fields.hasErrors('optionsText[2]')}" th:errors="*{optionsText[2]}">QuestionOption Error</span>
+        </label>
+
+        <label class="input-field-container">
+          Réponse 4
+          <input type="text" th:field="*{optionsText[3]}"
+                 class="input-field full-width">
+          <span class="validation-error" th:if="${#fields.hasErrors('optionsText[3]')}" th:errors="*{optionsText[3]}">QuestionOption Error</span>
+        </label>
+
+          <input type="submit" value="Next Question" class="button full-width top-bottom-margin">
+          <input type="submit" value="Create" class="button full-width top-bottom-margin">
+
+      </form>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
